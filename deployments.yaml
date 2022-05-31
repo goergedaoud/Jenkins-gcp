@@ -1,0 +1,53 @@
+# [START jenkins_deployment]
+---
+  apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    name: jenkins
+    namespace: jenkinsgcp
+  spec:
+    replica: 1
+    template: 
+      metadata:
+        Labels:
+          app: master
+      spec:
+        containers:
+        - name: master
+          image: jenkins/jenkins:tls
+          ports:
+          - containerPort: 8080
+          - containerPort: 50000
+          readinessProbe:
+            httpGet:
+              path: /login
+              port: 8080
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 2
+            failureThreshold: 2
+          env:
+          - name: JENKINS_OPTS
+            valueFrom:
+              secretKeyRef:
+                name: jenkins
+                key: options
+          - name: JAVA_OPTS
+            value: '-Xmx1400m'
+          VolumeMounts:
+          - mountPath: /var/jenkins_home
+            name: jenkins-home
+          resources:
+            limits:
+              cpu: 500m
+              memory: 1500Mi
+            requests:
+              cpu: 500m
+              memory: 1500Mi
+        Volumes:
+        - name: jenkins-home
+          gcePersistentDisk:
+            pdName: jenkins-home
+            fsType: ext4
+            partition: 1
+# [END jenkins_deployment]
