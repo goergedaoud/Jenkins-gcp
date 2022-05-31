@@ -1,0 +1,7 @@
+# [START jenkins-namespace]
+---
+  kind: Namespace
+  apiVersion: v1
+  metadata:
+    name: jenkinsgcp
+# [END jenkins-namespace]
