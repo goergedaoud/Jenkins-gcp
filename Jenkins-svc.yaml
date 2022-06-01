@@ -13,7 +13,7 @@
     - port: 8080
       name: ui
     - port: 50000
-      name: TCPAgent
+      name: tcp_agent
     selector:
       app: jenkins-app
 # [END jenkins-service]
