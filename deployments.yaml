@@ -46,8 +46,6 @@
               memory: 1500Mi
         Volumes:
         - name: jenkins-home
-          gcePersistentDisk:
-            pdName: jenkins-home
-            fsType: ext4
-            partition: 1
+          persistentVolumeClaim:
+            claimName: jenkins-volumeclaim
 # [END jenkins_deployment]
