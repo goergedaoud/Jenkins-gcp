@@ -4,7 +4,7 @@
   kind: Deployment
   metadata:
     name: jenkins
-    namespace: jenkinsgcp
+#    namespace: jenkinsgcp
   spec:
     replica: 1
     template: 
