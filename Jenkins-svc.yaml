@@ -28,8 +28,7 @@
       spec:
         containers:
         - name: master
-          image: jenkins/jenkins:tls
-          
+          image: jenkins/jenkins:tls          
 ---
   apiVersion: apps/v1
   kind: Deployment
@@ -37,7 +36,7 @@
     name: jenkins-app
     namespace: jenkinsgcp
   spec:
-    replica: 1
+    replicas: 1
     selector:
       matchLabels:
         app: master
