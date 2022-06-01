@@ -11,7 +11,9 @@
     type: LoadBalancer
     ports:
     - port: 8080
+      name: ui
     - port: 50000
+      name: TCPAgent
     selector:
       app: jenkins-app
 # [END jenkins-service]
