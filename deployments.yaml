@@ -37,13 +37,13 @@
           VolumeMounts:
           - mountPath: /var/jenkins_home
             name: jenkins-home
-#          resources:
-#            limits:
-##              cpu: 500m
-#              memory: 1500Mi
-#            requests:
-#              cpu: 500m
-#              memory: 1500Mi
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1500Mi
+          requests:
+            cpu: 500m
+            memory: 1500Mi
         Volumes:
         - name: jenkins-home
           persistentVolumeClaim:
