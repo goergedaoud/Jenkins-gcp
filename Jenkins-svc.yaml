@@ -37,10 +37,7 @@
             name: master
             env:
             - name: JENKINS_OPTS
-              valueFrom:
-              secretKeyRef:
-                name: jenkins
-                key: options
+              value: --argumentsRealm.roles.jenkins=admin --argumentsRealm.passwd.jenkins=Change_me
             - name: JAVA_OPTS
               value: '-Xmx1400m'
             ports:
