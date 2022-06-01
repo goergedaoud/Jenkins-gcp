@@ -37,7 +37,7 @@
     name: jenkins-app
     namespace: jenkinsgcp
   spec:
-    replicas: 1
+    replica: 1
     selector:
       matchLabels:
         app: master
