@@ -1,11 +1,22 @@
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: jenkins-volumeclaim
-  namespace: jenkinsgcp
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
+# [START jenkins-namespace]
+---
+  kind: Namespace
+  apiVersion: v1
+  metadata:
+    name: jenkinsgcp
+# [END jenkins-namespace]
+# [START jenkins-volumeclaim]
+---
+  kind: PersistentVolumeClaim
+  apiVersion: v1
+  metadata:
+    name: jenkins-volumeclaim
+    namespace: jenkinsgcp
+  spec:
+    accessModes:
+     - ReadWriteOnce
+    resources:
+      requests:
+        storage: 10Gi
+---
+# [END jenkins-volumeclaim]

@@ -1,0 +1,70 @@
+# [START jenkins-service]
+---
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: jenkins-service
+    namespace: jenkinsgcp
+    labels:
+      app: jenkins-app
+  spec:
+    type: LoadBalancer
+    ports:
+    - port: 8080
+    - port: 50000
+    selector:
+      app: jenkins-app
+# [END jenkins-service]
+# [START jenkins-app]
+  metadata:
+    name: jenkins
+    namespace: jenkinsgcp
+  spec:
+    replica: 1
+    template: 
+      metadata:
+        Labels:
+          app: master
+      spec:
+        containers:
+        - name: master
+          image: jenkins/jenkins:tls
+          
+---
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: jenkins-app
+    namespace: jenkinsgcp
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: master
+    template:
+      metadata:
+        labels:
+          app: master
+      spec:
+        containers:
+          - image: jenkins/jenkins:tls
+            name: master
+            env:
+            - name: JENKINS_OPTS
+              valueFrom:
+              secretKeyRef:
+                name: jenkins
+                key: options
+            - name: JAVA_OPTS
+              value: '-Xmx1400m'
+            ports:
+            - containerPort: 8080
+            - containerPort: 50000
+            volumeMounts:
+              - name: jenkins-home
+                mountPath: /var/jenkins_home
+        volumes:
+          - name: jenkins-home
+            persistentVolumeClaim:
+              claimName: jenkins-volumeclaim
+# [END jenkins-app]
