@@ -35,7 +35,7 @@
           app: master
       spec:
         containers:
-          - image: jenkins/jenkins:tls
+          - image: jenkins/jenkins:lts-jdk11
             name: master
             env:
             - name: JENKINS_OPTS
