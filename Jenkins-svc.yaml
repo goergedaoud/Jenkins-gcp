@@ -16,19 +16,6 @@
       app: jenkins-app
 # [END jenkins-service]
 # [START jenkins-app]
-  metadata:
-    name: jenkins
-    namespace: jenkinsgcp
-  spec:
-    replica: 1
-    template: 
-      metadata:
-        Labels:
-          app: master
-      spec:
-        containers:
-        - name: master
-          image: jenkins/jenkins:tls          
 ---
   apiVersion: apps/v1
   kind: Deployment
