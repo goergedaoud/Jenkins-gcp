@@ -6,7 +6,7 @@
     name: jenkins-service
     namespace: jenkinsgcp
     labels:
-      app: jenkins-app
+      app: master
   spec:
     type: LoadBalancer
     ports:
@@ -15,7 +15,7 @@
     - port: 50000
       name: tcp-agent
     selector:
-      app: jenkins-app
+      app: master
 # [END jenkins-service]
 # [START jenkins-app]
 ---
