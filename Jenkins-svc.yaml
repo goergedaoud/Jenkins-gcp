@@ -37,11 +37,11 @@
         containers:
           - image: jenkins/jenkins:lts-jdk11
             name: jenkins
-            #env:
-            #- name: JENKINS_OPTS
-            #  value: --argumentsRealm.passwd.jenkins=Change_me --argumentsRealm.roles.jenkins=admin
-            #- name: JAVA_OPTS
-            #  value: '-Xmx1400m'
+            env:
+            - name: JENKINS_OPTS
+              value: --argumentsRealm.passwd.jenkins=Change_me --argumentsRealm.roles.jenkins=admin
+            - name: JAVA_OPTS
+              value: '-Xmx1400m'
             ports:
             - containerPort: 8080
             - containerPort: 50000
