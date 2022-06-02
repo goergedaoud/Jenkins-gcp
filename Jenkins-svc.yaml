@@ -1,21 +1,21 @@
 # [START jenkins-service]
-#---
-##apiVersion:#v1
-##kind:#Service
-##metadata:
-####name:#jenkins
-####namespace:#jenkinsgcp
-####labels:
-######app:#jenkins
-##spec:
-####type:#LoadBalancer
-####ports:
-####-#port:#8080
-######name:#ui
-####-#port:#50000
-######name:#tcp-agent
-####selector:
-######app:#jenkins
+ ---
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: jenkins
+    namespace: jenkinsgcp
+    labels:
+      app: jenkins
+  spec:
+    type: LoadBalancer
+    ports:
+    - port: 8080
+      name: ui
+    - port: 50000
+      name: tcp-agent
+    selector:
+      app: jenkins
 # [END jenkins-service]
 # [START jenkins-app]
 ---
@@ -45,12 +45,11 @@
             ports:
             - containerPort: 8080
             - containerPort: 50000
-            volumeMounts:
-              - name: jenkins-home
-                mountPath: /var/jenkins_home
-        volumes:
-          - name: jenkins-home
-            persistentVolumeClaim:
-              namespace: jenkinsgcp
-              claimName: jenkins-volumeclaim
+            #volumeMounts:
+            #  - name: jenkins-home
+            #    mountPath: /var/jenkins_home
+        #volumes:
+        #  - name: jenkins-home
+        #    persistentVolumeClaim:
+        #      claimName: jenkins-volumeclaim
 # [END jenkins-app]
