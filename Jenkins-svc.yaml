@@ -39,9 +39,9 @@
             name: master
             env:
             - name: JENKINS_OPTS
-              value: --argumentsRealm.roles.jenkins=admin --argumentsRealm.passwd.jenkins=Change_me
-            - name: JAVA_OPTS
-              value: '-Xmx1400m'
+              value: --argumentsRealm.passwd.jenkins=Change_me --argumentsRealm.roles.jenkins=admin
+            #- name: JAVA_OPTS
+            #  value: '-Xmx1400m'
             ports:
             - containerPort: 8080
             - containerPort: 50000
