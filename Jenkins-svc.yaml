@@ -51,5 +51,6 @@
         volumes:
           - name: jenkins-home
             persistentVolumeClaim:
+              namespace: jenkinsgcp
               claimName: jenkins-volumeclaim
 # [END jenkins-app]
