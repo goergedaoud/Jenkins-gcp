@@ -1,9 +1,9 @@
 # [START jenkins-namespace]
----
-  kind: Namespace
-  apiVersion: v1
-  metadata:
-    name: jenkinsgcp
+#---
+#  kind: Namespace
+#  apiVersion: v1
+#  metadata:
+#    name: jenkinsgcp
 # [END jenkins-namespace]
 # [START jenkins-volumeclaim]
 ---
@@ -11,7 +11,7 @@
   apiVersion: v1
   metadata:
     name: jenkins-volumeclaim
-    namespace: jenkinsgcp
+    #namespace: jenkinsgcp
   spec:
     accessModes:
      - ReadWriteOnce

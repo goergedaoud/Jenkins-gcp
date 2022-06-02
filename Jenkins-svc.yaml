@@ -3,7 +3,7 @@
   kind: Service
   metadata:
     name: jenkins
-    namespace: jenkinsgcp
+    #namespace: jenkinsgcp
     labels:
       app: jenkins
   spec:
@@ -22,7 +22,7 @@
   kind: Deployment
   metadata:
     name: jenkins
-    namespace: jenkinsgcp
+    #namespace: jenkinsgcp
   spec:
     replicas: 1
     selector:
@@ -44,11 +44,11 @@
             ports:
             - containerPort: 8080
             - containerPort: 50000
-            #volumeMounts:
-            #  - name: jenkins-home
-            #    mountPath: /var/jenkins_home
-        #volumes:
-        #  - name: jenkins-home
-        #    persistentVolumeClaim:
-        #      claimName: jenkins-volumeclaim
+            volumeMounts:
+              - name: jenkins-home
+                mountPath: /var/jenkins_home
+        volumes:
+          - name: jenkins-home
+            persistentVolumeClaim:
+              claimName: jenkins-volumeclaim
 # [END jenkins-app]
